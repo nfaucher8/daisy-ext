@@ -11,10 +11,12 @@ export default defineConfig({
         lib: {
             entry: "./src/lib.ts",
             name: "daisy-ext",
-            formats: ["es"],
+            formats: ["es", "umd"],
             fileName: "lib"
         },
         rollupOptions: {
+            // Make sure to externalize deps that shouldn't be bundled into the library
+            external: ["tailwindcss/plugin"],
             plugins: [analyzer({summaryOnly: true})]
         },
         sourcemap: true,

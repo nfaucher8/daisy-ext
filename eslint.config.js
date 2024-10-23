@@ -1,5 +1,5 @@
-import pluginVue from 'eslint-plugin-vue'
 import eslint from "@eslint/js"
+import pluginVue from 'eslint-plugin-vue'
 
 const FILES = ["**/*.ts"]
 const IGNORES = ["dist/*"]

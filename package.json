@@ -3,10 +3,15 @@
   "version": "1.0.0",
   "description": "A plugin for DaisyUI that extends the available color palette",
   "type": "module",
+  "main": "dist/lib.umd.cjs",
   "module": "dist/lib.js",
   "types": "dist/lib.d.ts",
   "exports": {
     ".": {
+      "require": {
+        "default": "./dist/lib.umd.cjs",
+        "types": "./dist/lib.d.ts"
+      },
       "import": {
         "default": "./dist/lib.js",
         "types": "./dist/lib.d.ts"
@@ -28,7 +33,6 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview",
     "lint": "eslint . --fix",
     "format": "prettier --write src/",
     "update-deps": "npx npm-check-updates -u",
