@@ -1,0 +1,54 @@
+{
+  "name": "daisy-ext",
+  "version": "1.0.0",
+  "description": "A plugin for DaisyUI that extends the available color palette",
+  "type": "module",
+  "module": "dist/lib.js",
+  "types": "dist/lib.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "default": "./dist/lib.js",
+        "types": "./dist/lib.d.ts"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "homepage": "https://github.com/nfaucher8/daisy-ext",
+  "bugs": {
+    "url": "https://github.com/nfaucher8/daisy-ext/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nfaucher8/daisy-ext.git"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --fix",
+    "format": "prettier --write src/",
+    "update-deps": "npx npm-check-updates -u",
+    "prepublishOnly": "npm run build",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.13.0",
+    "@types/node": "^22.7.8",
+    "@vue/eslint-config-prettier": "^10.0.0",
+    "@vue/eslint-config-typescript": "^14.1.2",
+    "eslint": "^9.13.0",
+    "eslint-plugin-vue": "^9.29.1",
+    "husky": "^9.1.6",
+    "npm-check-updates": "^17.1.4",
+    "prettier": "^3.3.3",
+    "rollup-plugin-analyzer": "^4.0.0",
+    "tailwindcss": "^3.4.14",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.9",
+    "vite-plugin-dts": "^4.3.0"
+  }
+}

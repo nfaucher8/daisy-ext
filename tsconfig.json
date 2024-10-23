@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "skipLibCheck": true,
+
+    /* Allow progressive enhancement for types */
+    "allowJs": false,
+    "noImplicitAny": false,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+  },
+  "include": [
+    "env.d.ts",
+    "src/**/*.ts",
+    "src/**/*d.ts"
+  ]
+}
