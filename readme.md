@@ -1,6 +1,6 @@
 # daisy-ext
 
-`daisy-ext` is a plugin for [`Tailwind`](https://tailwindcss.com/) that extends the palette provided by [`DaisyUI`](https://daisyui.com/).
+`daisy-ext` is a plugin for [`Tailwind`](https://tailwindcss.com/) that ***ext***ends the palette provided by [`DaisyUI`](https://daisyui.com/).
 It does this by leveraging [`color-mix`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color-mix) to mix 
 the colors provided by DaisyUI themes dynamically in the browser.
 
