@@ -1,8 +1,6 @@
 /* eslint-env node */
-// This needs to be `require` because tailwind needs to load it as a cjs module
 import plugin from "tailwindcss/plugin"
 
-// Anything that is `import` needs to be bundled by `vite` (not external) or it will fail when loaded by Tailwind
 import { colorNames, colorProperties, colorShades, fallbackNames } from "./constants.js"
 
 /**
