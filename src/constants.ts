@@ -99,27 +99,3 @@ export const colorShades = {
   900: "90%",
   950: "95%"
 }
-
-/**
- * Properties that `buildDualColorStyles()` will build dual color utility classes for (this does not need to include
- * pseudo selectors like :hover, or :group-active)
- *
- * These are taken from properties in https://github.com/tailwindlabs/tailwindcss/blob/next/packages/tailwindcss/src/utilities.ts
- * that use the `--color` theme key
- */
-export const colorProperties = {
-  accent: "accent-color",
-  bg: "background-color",
-  border: "border-color",
-  caret: "caret-color",
-  decoration: "text-decoration-color",
-  // divide: "border-color",  // TODO: divide requires rules so that the first item doesn't have a border
-  fill: "fill",
-  outline: "outlineColor",
-  placeholder: "placeholderColor",
-  ring: "--tw-ring-color",
-  "ring-offset": "--tw-ring-offset-color",
-  // shadow: "--tw-shadow-color",  // Currently not working
-  stroke: "stroke",
-  text: "color",
-}

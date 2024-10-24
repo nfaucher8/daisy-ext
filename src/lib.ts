@@ -1,7 +1,7 @@
 /* eslint-env node */
 import plugin from "tailwindcss/plugin"
 
-import { colorNames, colorProperties, colorShades, fallbackNames } from "./constants.js"
+import { colorNames, colorShades, fallbackNames } from "./constants.js"
 
 /**
  * DaisyUI includes `neutral shades` https://github.com/saadeghi/daisyui/blob/master/src/index.js#L133 but because they
@@ -36,59 +36,44 @@ function neutralFix() {
 }
 
 /**
- * Builds "mixed" color styles with a single input color. This allows classes like `bg-primary-500` to work (primary is
- * mixed 50% against base-100).
- *
- * @param includeNeutral Include styles provided by `neutralFix()`. If false these styles will be omitted (defaults to
- * true)
+ * Builds colors added by `daisy-ext`. Builds "mixed" color styles with a single input color. This allows classes like
+ * `bg-primary-500` to work (primary is mixed 50% against base-100). Also builds "mixed" color styles with 2 input
+ * colors. This allows classes like `bg-primary-500-primary-content` to work (primary is mixed 50% against
+ * primary-content).
  */
-function buildColorStyles(includeNeutral = true) {
+function buildColorStyles() {
   const builtColors = {}
 
-  for (const [color_class, color_variable] of Object.entries(colorNames)) {
+  for (const [color1_class, color1_variable] of Object.entries(colorNames)) {
     const builtShades = {
-      DEFAULT: `var(${fallbackNames[color_class]},oklch(var(${color_variable})/<alpha-value>))`
+      DEFAULT: `var(${fallbackNames[color1_class]},oklch(var(${color1_variable})/<alpha-value>))`
     }
 
     for (const [shade_class, shade_value] of Object.entries(colorShades)) {
-      builtShades[shade_class] =
-        `color-mix(in oklab, color-mix(in oklab, var(${fallbackNames[color_class]}, oklch(var(${color_variable}))) ${shade_value}, oklch(var(--b1))) calc(<alpha-value> * 100%), transparent)`
+      builtShades[shade_class] = {
+        DEFAULT: `color-mix(in oklab, color-mix(in oklab, var(${fallbackNames[color1_class]}, oklch(var(${color1_variable}))) ${shade_value}, var(--fallback-b1, oklch(var(--b1)))) calc(<alpha-value> * 100%), transparent)`
+      }
+
+      for (const [color2_class, color2_variable] of Object.entries(colorNames)) {
+        if (color1_class === color2_class) {
+          continue
+        }
+
+        builtShades[shade_class][color2_class] = `color-mix(in oklab, color-mix(in oklab, var(${fallbackNames[color1_class]}, oklch(var(${color1_variable}))) ${shade_value}, var(${fallbackNames[color2_class]}, oklch(var(${color2_variable})))) calc(<alpha-value> * 100%), transparent)`
+      }
     }
 
-    builtColors[color_class] = builtShades
+    builtColors[color1_class] = builtShades
   }
 
   return {
     ...builtColors,
-    ...(includeNeutral ? neutralFix() : {})
+    ...neutralFix()
   }
-}
-
-/**
- * Builds "mixed" color styles with 2 input colors. This allows classes like `bg-primary-500-primary-content` to work
- * (primary is mixed 50% against primary-content).
- */
-function buildDualColorStyles() {
-  const colorMixStyles = {}
-  for (const [color1_class, color1_variable] of Object.entries(colorNames)) {
-    for (const [shade_class, shade_value] of Object.entries(colorShades)) {
-      for (const [color2_class, color2_variable] of Object.entries(colorNames)) {
-        for (const [property_class, property_name] of Object.entries(colorProperties)) {
-          const obj = {}
-          obj[property_name] =
-            `color-mix(in oklab, var(${fallbackNames[color1_class]}, oklch(var(${color1_variable}))) ${shade_value}, oklch(var(${color2_variable})))`
-          colorMixStyles[`.${property_class}-${color1_class}-${shade_class}-${color2_class}`] = obj
-        }
-      }
-    }
-  }
-  return colorMixStyles
 }
 
 export default plugin(
-  function ({ addUtilities }) {
-    addUtilities(buildDualColorStyles())
-  },
+  () => {},
   {
     theme: {
       extend: {
