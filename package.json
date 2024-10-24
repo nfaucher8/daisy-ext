@@ -1,7 +1,8 @@
 {
   "name": "daisy-ext",
-  "version": "1.0.0",
   "description": "A plugin for DaisyUI that extends the available color palette",
+  "version": "1.0.0",
+  "license": "MIT",
   "type": "module",
   "main": "dist/lib.umd.cjs",
   "module": "dist/lib.js",
