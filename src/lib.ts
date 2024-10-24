@@ -59,7 +59,8 @@ function buildColorStyles() {
           continue
         }
 
-        builtShades[shade_class][color2_class] = `color-mix(in oklab, color-mix(in oklab, var(${fallbackNames[color1_class]}, oklch(var(${color1_variable}))) ${shade_value}, var(${fallbackNames[color2_class]}, oklch(var(${color2_variable})))) calc(<alpha-value> * 100%), transparent)`
+        builtShades[shade_class][color2_class] =
+          `color-mix(in oklab, color-mix(in oklab, var(${fallbackNames[color1_class]}, oklch(var(${color1_variable}))) ${shade_value}, var(${fallbackNames[color2_class]}, oklch(var(${color2_variable})))) calc(<alpha-value> * 100%), transparent)`
       }
     }
 
@@ -72,15 +73,12 @@ function buildColorStyles() {
   }
 }
 
-export default plugin(
-  () => {},
-  {
-    theme: {
-      extend: {
-        colors: {
-          ...buildColorStyles()
-        }
+export default plugin(() => {}, {
+  theme: {
+    extend: {
+      colors: {
+        ...buildColorStyles()
       }
     }
   }
-)
+})
