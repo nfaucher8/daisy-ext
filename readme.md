@@ -1,6 +1,13 @@
+# Looking for color mixing with Tailwind 4 and DaisyUI 5?
+
+This plugin was designed for Tailwind 3 and DaisyUI 4. For a version compatible with Tailwind 4 and DaisyUI 5 please see
+[tw-semantic-colors](https://github.com/futar-studios/tw-semantic-colors)
+
+---
+
 # daisy-ext
 
-`daisy-ext` is a plugin for [`Tailwind`](https://tailwindcss.com/) that ***ext***ends the palette provided by [`DaisyUI`](https://daisyui.com/).
+`daisy-ext` is a plugin for [`Tailwind 3`](https://tailwindcss.com/) that ***ext***ends the palette provided by [`DaisyUI 4`](https://daisyui.com/).
 It does this by leveraging [`color-mix`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color-mix) to mix 
 the colors provided by DaisyUI themes dynamically in the browser.
 
